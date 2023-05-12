@@ -1,8 +1,6 @@
 # Distributed-Code-Synthesis
 Third Year Project - Working only on my Lancaster University's VM accont
  
- 
- 
 Darin Georgiev 
  
 Distributed Code Synthesis 
@@ -10,44 +8,12 @@ Distributed Code Synthesis
 B.Sc. Computer Science 
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
  
-1.	Abstract 
+## 1.	Abstract 
 The innovative technique known as "program synthesis" has revolutionized the way users can specify the desired output of a program and automatically generate the corresponding code. This approach is particularly advantageous when dealing with well-defined problems and predetermined outputs. In the present project, we have utilized the program by example approach to generate code that can solve the input-output mapping problem, which involves finding the operation that can transform the two numbers into a third number which all three are inputted by the user. To achieve this, I have adopted a strategy known as "Explicit Enumeration" approach, which involves explicitly constructing different solutions from which the program should select the one that satisfies the observations. Implementing this task using Java RMI ensures that the workload is distributed across multiple instances of the same program, resulting in faster and more efficient code generation. By spreading out code synthesis, we create a solid foundation for upcoming projects handling high volumes of operations. 
  
-2.	Introduction 
+## 2.	Introduction 
 The overall aim of the project on Distributed Code Synthesis (DCS) is to develop a program that can automatically generate code from specifications, while leveraging the power of distributed computing to improve the scalability and efficiency of the synthesis process. 
 DSC is a relatively new field of research that aims to automate the process of writing code by using code synthesising techniques. The idea is to find the logic behind the input, which then makes it possible generate new code based on the given specification.  
 There are several reasons why this project is worth doing. First, writing code is a time-consuming and error-prone task, and automating it could save developers a significant amount of time and effort. Second, code synthesis could help improve the quality of code by reducing the likelihood of bugs and other errors. Finally, code synthesis could enable non-experts to create software by providing a more accessible interface for programming. 
@@ -61,16 +27,16 @@ The aims of this project are to:
 •	Improving the code if the results are not accurate. 
 In this report, I will discuss my findings on Code Synthesis and Distributed Systems, and how I have integrated them into a program that tackles a specific problem. The task is to determine the operation that can be used between two numbers to make them equal to a third number. I will explore the various methods I have attempted and explain the reasoning behind the design choices I have made. 
  
-3.	Background 
+## 3.	Background 
 When delving into the subject of Distributed Code Synthesis, it is important to first examine its two underlying sub-topics: Distributed Systems and Code Synthesis. By gaining a thorough understanding of these two components, we can better comprehend the complexities of Distributed Code Synthesis. It is therefore imperative that we take the time to explore the core principles of both Distributed Systems and Code Synthesis in order to fully grasp the intricacies of this topic. 
-1.	Distributed Systems 
+### 3.1.	Distributed Systems 
 Distributed System (DS) is a network of computers that work together to achieve a common goal, even though they are physically separated from each other. These computers, also known as nodes, communicate with each other through messages to coordinate their actions and share resources. The DS is designed to enhance performance, scalability, and reliability by breaking down complex tasks into smaller, more manageable parts that can be processed in parallel. A distributed system can be found in various applications, including cloud computing, peer-to-peer networks, and distributed databases. The primary advantage of a distributed system is that it can handle large amounts of data and provide high-performance computing capabilities, making it an essential component of modern computing. In a paper authored by Maarten van Steen and Andrew   distributed systems is provided. However, it must be noted that the system architectures discussed in the paper are primarily geared towards high-level applications and may not be directly relevant to the specific project at hand. While the paper offers valuable insights into the workings of distributed systems, it is important to carefully consider the applicability of the concepts presented to the context of our project. 
  
 It's worth mentioning that the same authors have written a book on DS, which I found immensely helpful in my current project. Their book not only covers the foundational aspects of distributed systems but also delves into the high-level specifics of each type of system. Personally, I relied heavily on this book as it provided me with a comprehensive understanding of crucial components such as Client-Server communication(124-141), threads, synchronisation(104, 298), and RPC(173). I must say that the authors have done an exceptional job of explaining these concepts in great detail, which has helped me immensely in applying them to my project. 
  
 There is another book on DS by George Coulouris, Jean Dollimore and Tim Kindberg which goes more in depth on Remote Invocation but in Java. They authors have written a few case studies on RMI one of which is a program that allows a few users to have a view of a drawing digital board which has geometrical figures drawn by each one of the users. I found that study particularly interesting as it shows the full implementation of their program using Java RMI. It should be noted that Java’s Remote Method Invocation is better approach than C’s Remote Procedure Call because RMI has the same functionality, but also has the ability to pass objects. From these two books I came to the conclusion that I should use Java RMI for the distribution part of this project. 
  
-2.	Code Synthesis 
+### 3.2.	Code Synthesis 
 Code Synthesis (CS) is the process of automatically generating computer code from a high-level specification or model. It involves the use of specialized software tools that analyse the requirements and constraints of a given problem domain and produce code that conforms to those specifications. The goal of CS is to reduce the time and effort required to develop complex software systems, while also improving the quality and reliability of the resulting code. CS is particularly useful in situations where the problem domain is well-defined and the requirements are clearly specified, such as in the development of embedded systems, control systems, and other specialized applications. 
  
 An example of CS is the “FlashFill” feature in Excel which was released in 2013. It has the ability to automatically fill in data when it senses a pattern. Examples of that would be to separate the first names from last names and place the new result in two new columns. This feature is based on a study called “Automating String Processing in Spreadsheets Using Input-Output Examples” by Sumit Gulwani. The author goes in depth how he has managed to create synthesis using splitting and concatenation to create substrings in order to process the inputted text. The algorithm heavily depends on Substring Extraction Logics, Traces, Conditionals, Loops, and Partitions, utilizing them repeatedly. Following the execution of the algorithm, the outputs are ranked based on the concatenation size, and the smallest one is selected as the final result. The author has chosen to use the Occam’s razor principle, which states that the simplest explanation is typically the most accurate.*10p – 5.3*” 
@@ -83,8 +49,8 @@ The main part of the project is divided to three “dimensions” with the first
  
 After I read that study I had more general idea of what I needed to structure my code. I started looking for more high-level information sources so I can understand how synthesis is programmed. I came across Armando Solar-Lezama’s lectures on Program Synthesis which helped me understand better the different search techniques, and which one should be used in which case. 
 I have decided to write this project using Java as the primary programming language. There are a few reasons for this choice. Firstly, I am not a professional developer and I have had the most exposure to Java throughout my learning journey. Therefore, I feel more comfortable using this language to undertake this task. Additionally, in section 3.1 of the Background section from this report, I mention two books that strongly recommended the use of Java for this type of project. After reading through the recommendations and considering the requirements of the project, I am convinced that Java will be the most suitable language to achieve the desired outcome. Overall, while there may be other programming languages that could potentially be used for this project, my personal experience and the recommendations from trusted sources have led me to choose Java as the most practical and effective option. 
-4.	Design 
-4.1 Java RMI 
+## 4.	Design 
+### 4.1 Java RMI 
 It took me a considerable amount of time to carefully weigh my options and determine the most effective structure and tools to utilize for this program. After perusing the materials provided in the two books from 3.1, I ultimately decided that RPC or RMI would be the most advantageous approach for the distribution aspect of this project. This approach seemed to be the most convenient and straightforward way to demonstrate distribution without requiring the use of complex protocols and sockets. Initially, I also contemplated the possibility of utilizing cluster-based distribution. However, after conducting further research and reading an insightful article on the topic regarding the problems that it has, I concluded that this approach would be better suited for software that involves the exchange of messages. As a result, I made the decision to commit to RMI over RPC, as it is more multifunctional, and I possess a greater depth of experience working with Java as opposed to C. 
 Breg et. Al. (2012) explore the performance and interoperability of Java RMI using experiments. What I found useful from this study is the way they explain how Java RMI works. Their visualisation of the architecture can be seen on Figure 1. From the diagram we can see an arrow signed with the number one showing the first step which is the server creates an object of type remote and it is registered in a registry. The client then can obtain references to objects stored in the registry (2). When the client initiates a method on the remote object, the method is initiated on a stub object (3), which is located on the same Java Virtual Machine (JVM) as the client’s JVM. The stub objects creates a message containing the name of the method as well as its parameters. This message is then sent (4)to the associated skeleton object in the server’s JVM. The skeleton object gets the method name and parameters form the message and initiates the corresponding method on the remote object with which it is associated (5). The method is then executed by the remote object and the return value is passed back to the skeleton (6). The skeleton “marshals” the return value in a message and it is sent to the stub object (7). The return value is then unmarshalled from the message by the stub and the same value is returned to the client program (8). 
  
@@ -96,14 +62,14 @@ In order to ensure that this architecture is functional, it is crucial to define
 ![Figure2](https://github.com/DarinGeorgievBulgaria/Distributed-Code-Synthesis/assets/95240962/73a310d1-8261-4d6a-97b2-284e3e4b10f4)
 Figure 2. 
 
-4.2 Code Synthesis Dimensions 
+### 4.2 Code Synthesis Dimensions 
 It can be said that the base of the distribution part between Client and Server of this project will rely heavily on Java RMI, but the next part that has to be designed is the synthesis. In order for it to be designed, first the three dimensions, which are mentioned in the last Sumit Gulwani's paper from 3.2 in the Background section, have to be defined. The first one is the intent of the user, which in this project is assumed that the user is going to use this program to find what operation can be used between the first two numbers that he or she inputs so that they are equal to the third number that is inputted. This means that our case is closest to the category of Input-Output examples where the user gives to the program a set of inputs and output which the program must find the logic between them. One of the problems with this approach it that it is difficult to define what is a good example of input and output and also how many should the user provide. I decided to choose the way which the author does not recommend, which is having a switch and case statement (Figure 3). The author does not recommend it because that approach is hardly scalable because it is corelated to the second dimension of the code synthesis which is Search Space. Due to the nature of the project the Search Space is rather small. It would have the size of 4 cases to be exact which is why I chose to use switch case statement regardless that it is not recommended. 
 
 ![Figure3](https://github.com/DarinGeorgievBulgaria/Distributed-Code-Synthesis/assets/95240962/1bef1b9d-c76f-4ee4-b473-e85b61fb3f1e)
 Figure 3. 
 
 The third dimension is Search Technique. In the case of this program when I was designing it, I thought that the most convenient one is the Brute-force Search. This is the process of defining the possible solutions in the search space and checking each program to see if it satisfies the input constraints or not. There are a few successful projects using the approach one of which is an algorithm for mutual-exclusion which is a program that generates algorithms based on user's specifications such as number of processes, number of lines of code, size and type of variables. There is an algorithm generator which generates all possible algorithms that satisfy the specification. Then the algorithms are sent to a verifier which checks if the generated algorithm is a solution to the problem or not and if it is then it is sent to the user as a result. The authors have used the Brute-force approach in the algorithm verifier which has to check every single generated algorithm. From this paper it can be concluded that this type of search is the simplest, but can be expensive, which is there should be good optimisation in place. Another example of how the Brute-force search can be seen in the paper for the Superoptimizer which is a program that generates the shortest algorithm possible when it is given an instruction set. In other words, it has the ability to optimise programs and then evaluate if the program is shorter but also accurate. The two papers under consideration use the Brute-force search method for the calculation of simple algorithms. However, given the limited search space and uncomplicated calculations involved in obtaining a desired outcome, I am of the opinion that the most fitting approach for the generation of code synthesis would be to utilize a combination of the switch case statement and the Brute-force search technique. This approach would allow for a more thorough and comprehensive exploration of the search space, thereby increasing the likelihood of obtaining a successful outcome. Moreover, the switch case statement would provide a clear and concise framework for organizing the various possible outcomes, thereby facilitating the process of code synthesis. Overall, the use of the Brute-force search method in conjunction with the switch case statement represents a highly effective and efficient approach for generating code synthesis. 
-4.3 Program Architecture 
+### 4.3 Program Architecture 
 The design of the algorithm for the synthesis is now specified, but still it does not distribute the operations. So instead of having the Client – Server architecture, I decided to change it to Client – Server – Workers architecture, where the Server will distribute the calculations of the different operations, so that each worker will calculate with a different operation (Figure 4). The initial design was to have a class Worker which had a switch case statement where each case is a different operation. That class had a constructor which would have been used to pass an operation from the Server when a Worker is initialised. Later I came to the realisation that even though the operations are distributed, they are calculated one after another (sequentially) and this is not what this project is aiming for. In order to get a distribution which is also not sequential, I decided to use threads and implement the Runnable interface in the Worker class. The creation of threads was with a for loop which makes the process of calculation parallel. I managed to get the results printed on the Terminal of the Server, but I needed to send them to the Client. Due to the nature of the run method from the Runnable interface the results could not be returned to the Server and then sent to the Client which is why I decided to use the Future API from the java.util.concurrent.Future library. In order the understand better the concept of futures in Java, I read a paper on how to make Futures safe in which I found the implementation chapter particularly useful. To make Futures work, I had to change the Worker class from Runnable to Callable<String>. It had a generic of type String because that was going to be returned by the call method which used to be run method. When I had the Future completely set up in my Server class, I managed to pass the results from the Worker thread to Client's Terminal.  
 
 ![Figure4](https://github.com/DarinGeorgievBulgaria/Distributed-Code-Synthesis/assets/95240962/3c12117c-0361-40fe-8dd8-9075284f9d80)  
@@ -115,10 +81,10 @@ Upon careful reflection of the program, I arrived at the conclusion that while i
 Figure 5. 
  
  
-5.	Implementation 
+## 5.	Implementation 
 During the implementation process, I found myself reaching for a valuable resource in the form of a comprehensive book covering the entirety of the Java programming language. This book was exceptionally valuable in enhancing my comprehension of the complex intricacies associated with Java RMI, as well as the utilization of threads and debugging techniques. Additionally, I discovered another highly useful book that provided me with the necessary knowledge to create effective bash scripts. Having had no previous experience with bash, this book was an absolute lifesaver, as it provided me with a thorough understanding of the syntax involved and enabled me to successfully implement a variety of specific tasks that I will delve into in greater detail later in this chapter. 
 The program is created using Lancaster University's virtual machines. It is specifically made to run on that virtual machine from my personal account. It would need changes to run on any other device. 
-5.1  
+### 5.1  
 The program is comprised of three distinct folders, each containing both ".java" and ".class" files, along with three additional ".sh" files located outside of the folders. To gain a better understanding of the file structure, refer to the Appendices (!!!!!!). To successfully run the program, the "start.sh" script must be executed (as seen in Figure 6). Upon execution, three gnome terminals will open, each with a specific functionality and appropriately named. The first terminal will open the server folder and initiate the registry. The second terminal will wait for two seconds to allow the previous terminal to start and perform its operation before running the already compiled Server class. Similarly, the third terminal will wait for two seconds after the second terminal has started before opening the client folder and running the already compiled Client class. 
   
 ![Figure6](https://github.com/DarinGeorgievBulgaria/Distributed-Code-Synthesis/assets/95240962/ca8ca4ef-44b6-4ad2-a822-ee045042568f) 
@@ -134,7 +100,7 @@ As soon as the Client class is initiated, it will prompt the user to enter three
 ![Figure8](https://github.com/DarinGeorgievBulgaria/Distributed-Code-Synthesis/assets/95240962/61f71a36-feae-439b-a55a-16e12416e019)  
 Figure 8 – Client.java/main 
 	
-  5.2 
+###  5.2 
 The "numbersIO" method of the Server class can undoubtedly be considered as the most crucial function within the program. This method plays a pivotal role in the entire process as it takes the input and returns an ArrayList containing the operations that can be performed between the first two numbers to make them equal to the third one. This functionality is of immense significance as it serves as the foundation for all further calculations and manipulations within the program. Furthermore, the "numbersIO" method also initiates an object of type Numbers, which is utilized to store the three BigDecimal numbers obtained from the input. This step is essential in ensuring that the program can accurately perform the required mathematical operations. After the Numbers object has been initialized, the "startWorkers" method is called with an argument equal to 4. This method contains a for loop that iterates through the parameter specified, creating a new thread using the Multithreading class, which implements the Runnable interface. The run method of each thread is then initiated, as depicted in Figure 9. Each of these threads is responsible for executing a script from a specific directory using ProcessBuilder. It is worth noting that the same line of code can also be implemented using "Runtime.exec()". However, after conducting extensive research, it was found that there is no significant difference between the two methods, and using either is simply a matter of personal preference. 
 
 ![Figure9](https://github.com/DarinGeorgievBulgaria/Distributed-Code-Synthesis/assets/95240962/9bb0e3be-8b82-426f-97da-6e9c7e3bac3d)  
@@ -144,7 +110,7 @@ Upon executing the "workers.sh" bash script, a new terminal will be launched. Th
 
 ![Figure10](https://github.com/DarinGeorgievBulgaria/Distributed-Code-Synthesis/assets/95240962/65fd845e-a43b-45b2-8f68-bc7821120b20)  
 Figure 10 – workers.sh 
-	5.3 
+###	5.3 
 When the Worker class is started, it connects to the registry and looks for the name of the stub. After that it invokes the "getOperation" from the Server. This method loops over a list of operations type String and returns an operation which is also removed when returned. It invokes another method callled "fillList" which adds all operations to that list if it is empty. This method is important because after the initiation of the threads, all of them are going to try to use this method, therefore modify the ArrayList with operation, which is why it is important for this method to be synchronized. 
 After receiving an operation to use, the method "getAllNumbers" from the Server is initiated. It returns an ArrayList which stores objects of type BigDecimals. After that there is a switch case where every case is a calculation with a different operation. The reason for using BigDecimals instead of doubles is that calculations with doubles are inaccurate. When the snippet of code from Figure 11 is executed, it produces a result of 0.7000000000000001, instead of 0.7. The reason for that inaccuracy is that double-precision floating point value such as the double type is 64-bit value, and it is not exact. There are infinite possible real numbers and only finite number of bits. After the calculation using the allocated operation if the result is equal to the third number, then that operation is added to an ArrayList which is in the Server class. If that result is not equal to the third number, then "null" is added to the list. 
 
@@ -154,7 +120,7 @@ Figure 11.
 The edge cases such as dividing by 0 or having a non-terminating decimal as a result are handled with the first one simply not making the calculation and the second one with using the RoundingMode class. 
 When all possible operations are added to the ArrayList and it's size it equal to 4, then that list is passed using the return statement of the numbersIO method. The results are then presented in the Client's terminal and after that a bash script is executed using the same technique as it the Multithreading class. This bash script has the functionality to close the program. 
  
-6.	System in Operation 
+## 6.	System in Operation 
 To successfully execute the program, it is essential to navigate to the directory where the program is stored. Once you have located the program directory, the next step is to execute the bash script. This process can be viewed in greater detail in Figure 12. 
 
 ![Figure12](https://github.com/DarinGeorgievBulgaria/Distributed-Code-Synthesis/assets/95240962/02c2e07e-e8a4-4954-8440-259accc8f5a0)  
@@ -170,17 +136,17 @@ In examining figure 14, one can readily observe the terminal of the Client. With
 ![Figure14](https://github.com/DarinGeorgievBulgaria/Distributed-Code-Synthesis/assets/95240962/9697f13d-fb20-48fe-8f36-ab7ffc91357c)  
 Figure 14. 
  
-7.	Testing and Evaluation 
+## 7.	Testing and Evaluation 
 The program under evaluation takes three numbers as input from a Client class and finds which operations can be used between the first two numbers so that they are equal to the third one. The program uses a Server class to distribute the operations to Worker classes, each of which performs a different operation. The results are presented in the client class, which also accepts decimal numbers as input. To ensure the correctness and effectiveness of the program, I read a paper on software testing techniques where the author goes in depth in various testing and evaluation techniques that can be applied, such as unit testing, integration testing, system testing, and acceptance testing. 
-7.1 Unit Testing: 
+### 7.1 Unit Testing: 
 Unit testing involves testing each component of the program in isolation to ensure that it behaves as expected. In this program, the client class, server class, and worker classes tested independently. For instance, a unit test was created to ensure that the client class can accept decimal numbers as input and pass them to the server class. Similarly, a unit test was designed to verify that each worker class performs the designated operation correctly. 
-7.2 Integration Testing: 
+### 7.2 Integration Testing: 
 Integration testing involves testing how the different components of the program interact with each other. In this program, integration testing was performed to ensure that the Server class correctly distributes the operations to the worker classes and receives the results back. Also, integration testing was done to ensure that the client class displays the results correctly. 
 7.3 System Testing: 
 System testing focuses on testing the quality of the entire program. A system test is based on the functional requirement of the specification of the program. In this program, functional testing was done by testing the program with various inputs, including edge cases (7.5). 
-7.4 Acceptance Testing: 
+### 7.4 Acceptance Testing: 
 Accepting testing is when a program is given to the users to the users to test themselves. In the case of this program, it can't be tested by users due to the confidentiality of the project. But in order to simulate user testing, I used a random number generator and a calculator to input all different values. Using this approach, I found out that doubles did not produce accurate results, after which were replaced with BigDecimals. 
-7.5 Edge Cases: 
+### 7.5 Edge Cases: 
 Edge cases refer to input values that are at the extreme ends of the input range or that are unlikely to occur in normal usage. In this program, the examples of edge cases include: 
 	- Input values that are very large or very small 
 - Decimal inputs with a large number of decimal places 
@@ -188,7 +154,7 @@ Edge cases refer to input values that are at the extreme ends of the input range
 -Zero input values 
 The first three were made possible because the BigDecimal class was used in order to implement the numbers. It has the functionality to convert the numbers to Strings which makes it possible to use number of all sizes in calculations and have accurate results. The edge case, where zero is the second number, makes the division impossible. That case is handled using an if statement which simply skips the calculation part and displays a message that is not possible to be calculated. Testing the program with these edge cases can help identify potential issues such as overflow or underflow errors, accuracy issues, or unexpected behaviour. Therefore, testing with edge cases is essential to ensure that the program is robust and reliable. 
  
-8.	Conclusion 
+## 8.	Conclusion 
 In conclusion, it can be stated that this distributed code synthesis project was successfully developed and tested in achieving its objective of finding the operation that can be used between two decimal numbers to make them equal to a third number. The project has demonstrated how a simple task can be implemented using distribution and basic variation of code synthesis. 
 Program synthesis on its own is an innovation but combination with the distribution is what is going to take softwares to the next level. I believe that this combination can make program synthesis faster and more scalable but only if the correct program synthesis dimensions are selected. The relevance of this project lies in its potential to be applied to a wide range of real-world problems that require complex computations. For instance, it can be used by non-programmers to develop software without any computer knowledge, it can be used by programmers to create even more complex and innovative softwares. If program synthesis evolves to being able to solve non-software related problems, then this type of technology has the potential to solve complex real-world problems. It can also be used in the field of engineering to optimize the design of structures, machines, and systems. 
 Moreover, the project can be the one creating a new category of software which can be used by researchers to base their innovations on this approach. This topic should be researched more because by leveraging the power of distributed computing and program synthesis, teams can work together to solve complex problems more efficiently and effectively. 
@@ -196,7 +162,7 @@ In the future, this project can be further developed to include more complex ope
 Overall, the distributed code synthesis project has demonstrated the potential of using distributed computing to solve complex problems. The project has shown that by leveraging the power of distributed computing, we can develop innovative solutions that can be applied to a wide range of real-world problems. As such, this project represents an important contribution to the field of computer science and has significant implications for the future of computing. 
  
  
-9.	References 
+## 9.	References 
 9.1.	Van Steen, M. and Tanenbaum, A., 2018, “Distributed systems”. Available at: http://www.dgma.donetsk.ua/docs/kafedry/avp/metod/van%20Steen%20-%20Distributed%20Systems.pdf.
 9.2.	Coulouris, G.F., Dollimore, Jean and Kindberg, Tim (2005) Distributed systems : concepts and design. 4th ed. Harlow: Addison-Wesley.
 9.3.	van Steen, M., Tanenbaum, A.S., 2016, “A brief introduction to distributed systems.”. Available at: https://doi.org/10.1007/s00607-016-0508-7
